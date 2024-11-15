@@ -9,8 +9,7 @@
 /* Begin PBXBuildFile section */
 		56D357652CE78DAE00BB2149 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D357642CE78DAE00BB2149 /* AppDelegate.swift */; };
 		56D357672CE78DAE00BB2149 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D357662CE78DAE00BB2149 /* SceneDelegate.swift */; };
-		56D357692CE78DAE00BB2149 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D357682CE78DAE00BB2149 /* ViewController.swift */; };
-		56D3576C2CE78DAE00BB2149 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 56D3576B2CE78DAE00BB2149 /* Base */; };
+		56D357692CE78DAE00BB2149 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D357682CE78DAE00BB2149 /* HomeViewController.swift */; };
 		56D3576E2CE78DAF00BB2149 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56D3576D2CE78DAF00BB2149 /* Assets.xcassets */; };
 		56D357712CE78DAF00BB2149 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 56D357702CE78DAF00BB2149 /* Base */; };
 		56D3577C2CE78DAF00BB2149 /* BlutifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D3577B2CE78DAF00BB2149 /* BlutifyTests.swift */; };
@@ -39,8 +38,7 @@
 		56D357612CE78DAE00BB2149 /* Blutify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blutify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56D357642CE78DAE00BB2149 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		56D357662CE78DAE00BB2149 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		56D357682CE78DAE00BB2149 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		56D3576B2CE78DAE00BB2149 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		56D357682CE78DAE00BB2149 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		56D3576D2CE78DAF00BB2149 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		56D357702CE78DAF00BB2149 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		56D357722CE78DAF00BB2149 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -99,13 +97,11 @@
 		56D357632CE78DAE00BB2149 /* Blutify */ = {
 			isa = PBXGroup;
 			children = (
-				56D357642CE78DAE00BB2149 /* AppDelegate.swift */,
-				56D357662CE78DAE00BB2149 /* SceneDelegate.swift */,
-				56D357682CE78DAE00BB2149 /* ViewController.swift */,
-				56D3576A2CE78DAE00BB2149 /* Main.storyboard */,
+				56D357722CE78DAF00BB2149 /* Info.plist */,
 				56D3576D2CE78DAF00BB2149 /* Assets.xcassets */,
 				56D3576F2CE78DAF00BB2149 /* LaunchScreen.storyboard */,
-				56D357722CE78DAF00BB2149 /* Info.plist */,
+				56D357942CE78DF700BB2149 /* App */,
+				56D357952CE78E0700BB2149 /* ViewControllers */,
 			);
 			path = Blutify;
 			sourceTree = "<group>";
@@ -125,6 +121,23 @@
 				56D357872CE78DAF00BB2149 /* BlutifyUITestsLaunchTests.swift */,
 			);
 			path = BlutifyUITests;
+			sourceTree = "<group>";
+		};
+		56D357942CE78DF700BB2149 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				56D357642CE78DAE00BB2149 /* AppDelegate.swift */,
+				56D357662CE78DAE00BB2149 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		56D357952CE78E0700BB2149 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				56D357682CE78DAE00BB2149 /* HomeViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,7 +246,6 @@
 			files = (
 				56D3576E2CE78DAF00BB2149 /* Assets.xcassets in Resources */,
 				56D357712CE78DAF00BB2149 /* Base in Resources */,
-				56D3576C2CE78DAE00BB2149 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,7 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56D357692CE78DAE00BB2149 /* ViewController.swift in Sources */,
+				56D357692CE78DAE00BB2149 /* HomeViewController.swift in Sources */,
 				56D357652CE78DAE00BB2149 /* AppDelegate.swift in Sources */,
 				56D357672CE78DAE00BB2149 /* SceneDelegate.swift in Sources */,
 			);
@@ -297,14 +309,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		56D3576A2CE78DAE00BB2149 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				56D3576B2CE78DAE00BB2149 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		56D3576F2CE78DAF00BB2149 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -445,11 +449,12 @@
 				DEVELOPMENT_TEAM = KFD27J2TGQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Blutify/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Blutify;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -473,11 +478,12 @@
 				DEVELOPMENT_TEAM = KFD27J2TGQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Blutify/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Blutify;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
