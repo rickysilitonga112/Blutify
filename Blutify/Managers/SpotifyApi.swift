@@ -8,6 +8,9 @@
 import Foundation
 
 class SpotifyAPI {
+
+  static let shared = SpotifyAPI()
+
   private let clientId = AppPreference.shared.clientId
   private let clientSecret = AppPreference.shared.clientSecret
   private var accessToken: String?

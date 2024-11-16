@@ -20,6 +20,7 @@
 		5622D1B12CE8B4970086442F /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5622D1B02CE8B4970086442F /* Track.swift */; };
 		5622D1B32CE8B4AC0086442F /* SpotifyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5622D1B22CE8B4AC0086442F /* SpotifyApi.swift */; };
 		5622D1B52CE8B8280086442F /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5622D1B42CE8B8280086442F /* UIColor+Extension.swift */; };
+		5622D1B82CE8E4640086442F /* DebugSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5622D1B72CE8E4640086442F /* DebugSwift */; };
 		56D357652CE78DAE00BB2149 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D357642CE78DAE00BB2149 /* AppDelegate.swift */; };
 		56D357672CE78DAE00BB2149 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D357662CE78DAE00BB2149 /* SceneDelegate.swift */; };
 		56D357692CE78DAE00BB2149 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D357682CE78DAE00BB2149 /* HomeViewController.swift */; };
@@ -63,7 +64,7 @@
 		5622D1B22CE8B4AC0086442F /* SpotifyApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyApi.swift; sourceTree = "<group>"; };
 		5622D1B42CE8B8280086442F /* UIColor+Extension.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		56D357612CE78DAE00BB2149 /* Blutify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blutify.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		56D357642CE78DAE00BB2149 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		56D357642CE78DAE00BB2149 /* AppDelegate.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		56D357662CE78DAE00BB2149 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		56D357682CE78DAE00BB2149 /* HomeViewController.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		56D3576D2CE78DAF00BB2149 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -81,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5622D1B82CE8E4640086442F /* DebugSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +279,9 @@
 			dependencies = (
 			);
 			name = Blutify;
+			packageProductDependencies = (
+				5622D1B72CE8E4640086442F /* DebugSwift */,
+			);
 			productName = Blutify;
 			productReference = 56D357612CE78DAE00BB2149 /* Blutify.app */;
 			productType = "com.apple.product-type.application";
@@ -349,6 +354,9 @@
 				Base,
 			);
 			mainGroup = 56D357582CE78DAE00BB2149;
+			packageReferences = (
+				5622D1B62CE8E4640086442F /* XCRemoteSwiftPackageReference "DebugSwift" */,
+			);
 			productRefGroup = 56D357622CE78DAE00BB2149 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -747,6 +755,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5622D1B62CE8E4640086442F /* XCRemoteSwiftPackageReference "DebugSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/DebugSwift/DebugSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.6;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5622D1B72CE8E4640086442F /* DebugSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5622D1B62CE8E4640086442F /* XCRemoteSwiftPackageReference "DebugSwift" */;
+			productName = DebugSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 56D357592CE78DAE00BB2149 /* Project object */;
 }
