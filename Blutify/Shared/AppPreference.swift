@@ -8,21 +8,29 @@
 import Foundation
 
 public final class AppPreference: ObservableObject {
-    static let shared = AppPreference()
-    
-    public var apiKey: String {
-        if let basePath = Bundle.main.infoDictionary?[BFConstants.InfoPlistKey.apiKey] as? String {
-            return basePath
-        } else {
-            return "empty_api_key"
-        }
+  static let shared = AppPreference()
+
+  public var baseUrl: String {
+    if let basePath = Bundle.main.infoDictionary?[BFConstants.InfoPlistKey.baseUrl] as? String {
+      return basePath
+    } else {
+      return "empty_base_url"
     }
-    
-    public var baseUrl: String {
-        if let basePath = Bundle.main.infoDictionary?[BFConstants.InfoPlistKey.baseUrl] as? String {
-            return basePath
-        } else {
-            return "empty_base_url"
-        }
+  }
+
+  public var clientId: String {
+    if let basePath = Bundle.main.infoDictionary?[BFConstants.InfoPlistKey.clientId] as? String {
+      return basePath
+    } else {
+      return "empty_client_id"
     }
+  }
+
+  public var clientSecret: String {
+    if let basePath = Bundle.main.infoDictionary?[BFConstants.InfoPlistKey.clientSecret] as? String {
+      return basePath
+    } else {
+      return "empty_client_secret"
+    }
+  }
 }
