@@ -13,6 +13,11 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .red
+        print("Api key")
+        print(AppPreference.shared.apiKey)
+        
+        print("Base Path")
+        print(AppPreference.shared.baseUrl)
     }
 
 
