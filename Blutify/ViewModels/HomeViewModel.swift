@@ -36,6 +36,9 @@ final class HomeViewModel: NSObject {
   
   // MARK: - Helpers
   func loadRecommendations() {
+    // reset current track index
+    currentTrackIndex = -1
+    
     delegate?.shouldShowLoading()
     BFRequest.shared.fetchRecommendations { [weak self] tracks in
       DispatchQueue.main.async {
@@ -51,6 +54,9 @@ final class HomeViewModel: NSObject {
   }
   
   func perfromSearch(query: String) {
+    // reset current track index
+    currentTrackIndex = -1
+
     BFRequest.shared.searchMusic(query: query) { [weak self] tracks in
       DispatchQueue.main.async {
         self?.delegate?.shouldShowLoading()

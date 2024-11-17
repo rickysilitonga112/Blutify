@@ -173,6 +173,12 @@ extension HomeView: UISearchBarDelegate {
     performSearch(query: query)
   }
 
+  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    if searchText.isEmpty {
+      viewModel.loadRecommendations()
+    }
+  }
+
   private func performSearch(query: String) {
     showLoadingView()
     viewModel.perfromSearch(query: query)
