@@ -120,8 +120,8 @@
 		5622D1742CE841BA0086442F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				56D3576D2CE78DAF00BB2149 /* Assets.xcassets */,
 				56D3576F2CE78DAF00BB2149 /* LaunchScreen.storyboard */,
-				5622D1752CE841DC0086442F /* BFConstants.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -138,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				5622D17D2CE846BD0086442F /* AppPreference.swift */,
+				5622D1752CE841DC0086442F /* BFConstants.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -248,9 +249,8 @@
 		56D357632CE78DAE00BB2149 /* Blutify */ = {
 			isa = PBXGroup;
 			children = (
-				5622D1BD2CE9840E0086442F /* ApiClients */,
 				56D357722CE78DAF00BB2149 /* Info.plist */,
-				56D3576D2CE78DAF00BB2149 /* Assets.xcassets */,
+				5622D1BD2CE9840E0086442F /* ApiClients */,
 				56D357942CE78DF700BB2149 /* App */,
 				5622D17B2CE845DE0086442F /* AppConfig */,
 				56D357952CE78E0700BB2149 /* Controllers */,
