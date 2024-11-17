@@ -12,7 +12,8 @@ struct Track: Codable {
   let name: String?
   let artists: [Artist]?
   let album: Album?
-  let previewURL: URL?
+  let trackDuration: Int? // milisecond
+  let previewURL: String?
 
   struct Artist: Codable {
     let name: String?
@@ -34,6 +35,7 @@ struct Track: Codable {
     case name
     case artists
     case album
+    case trackDuration = "duration_ms"
     case previewURL = "preview_url"
   }
 }

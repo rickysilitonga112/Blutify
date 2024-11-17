@@ -9,7 +9,6 @@ import AVFoundation
 import Foundation
 import UIKit
 
-
 protocol HomeViewDelegate: AnyObject {
   func didErrorWith(message: String)
 }
@@ -38,9 +37,19 @@ final class HomeView: UIView {
     return tableView
   }()
 
+  // stack control view
+  private let buttonStackView: UIStackView = {
+    let stackView = UIStackView()
+    stackView.axis = .horizontal
+    stackView.alignment = .center
+    stackView.distribution = .equalSpacing
+    stackView.spacing = 20
+    stackView.translatesAutoresizingMaskIntoConstraints = false
+    return stackView
+  }()
+
   // MARK: - Action button
-  private let playButton = UIButton(type: .system)
-  private let stopButton = UIButton(type: .system)
+  private let playPauseButton = UIButton(type: .system)
   private let nextButton = UIButton(type: .system)
   private let prevButton = UIButton(type: .system)
   private let slider = UISlider()
@@ -73,28 +82,30 @@ final class HomeView: UIView {
     tableView.delegate = self
     tableView.dataSource = self
 
-    styleButton(playButton, sfSymbolName: "play")
-    styleButton(stopButton, sfSymbolName: "pause")
-    styleButton(prevButton, sfSymbolName: "backward.frame")
-    styleButton(nextButton, sfSymbolName: "forward.frame")
+    styleButton(playPauseButton, sfSymbolName: BFConstants.Button.play)
+    styleButton(prevButton, sfSymbolName: BFConstants.Button.prev)
+    styleButton(nextButton, sfSymbolName: BFConstants.Button.next)
 
     // Slider styling
     slider.minimumTrackTintColor = .appBlue
     slider.maximumTrackTintColor = .lightGray
     slider.thumbTintColor = .appBlue
 
-    playButton.addTarget(self, action: #selector(playTapped), for: .touchUpInside)
-    stopButton.addTarget(self, action: #selector(stopTapped), for: .touchUpInside)
+
+    buttonStackView.addArrangedSubview(prevButton)
+    buttonStackView.addArrangedSubview(playPauseButton)
+    buttonStackView.addArrangedSubview(nextButton)
+
+    playPauseButton.addTarget(self, action: #selector(playPauseTapped), for: .touchUpInside)
     nextButton.addTarget(self, action: #selector(nextTapped), for: .touchUpInside)
     prevButton.addTarget(self, action: #selector(prevTapped), for: .touchUpInside)
     slider.addTarget(self, action: #selector(sliderChanged), for: .valueChanged)
 
-    addSubviews(searchBar, tableView, playButton, stopButton, nextButton, prevButton, slider)
+    addSubviews(searchBar, tableView, buttonStackView, slider)
   }
 
-  func setupConstraints() {
-    playButton.translatesAutoresizingMaskIntoConstraints = false
-    stopButton.translatesAutoresizingMaskIntoConstraints = false
+  private func setupConstraints() {
+    playPauseButton.translatesAutoresizingMaskIntoConstraints = false
     nextButton.translatesAutoresizingMaskIntoConstraints = false
     prevButton.translatesAutoresizingMaskIntoConstraints = false
     slider.translatesAutoresizingMaskIntoConstraints = false
@@ -107,19 +118,11 @@ final class HomeView: UIView {
       tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
       tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
       tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
-      tableView.bottomAnchor.constraint(equalTo: playButton.topAnchor, constant: -20),
+      tableView.bottomAnchor.constraint(equalTo: playPauseButton.topAnchor, constant: -20),
 
-      playButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-      playButton.bottomAnchor.constraint(equalTo: stopButton.topAnchor, constant: -10),
-
-      stopButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-      stopButton.bottomAnchor.constraint(equalTo: nextButton.topAnchor, constant: -10),
-
-      nextButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-      nextButton.bottomAnchor.constraint(equalTo: slider.topAnchor, constant: -20),
-
-      prevButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-      prevButton.bottomAnchor.constraint(equalTo: slider.topAnchor, constant: -20),
+      buttonStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+      buttonStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+      buttonStackView.bottomAnchor.constraint(equalTo: slider.topAnchor, constant: -20),
 
       slider.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
       slider.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
@@ -127,88 +130,32 @@ final class HomeView: UIView {
     ])
   }
 
-  func showLoadingView() {
-    guard self.loadingView == nil else { return }
-
-    let activityIndicator = UIActivityIndicatorView(style: .large)
-    activityIndicator.color = .black
-    activityIndicator.startAnimating()
-    activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-    self.addSubview(activityIndicator)
-
-    NSLayoutConstraint.activate([
-      activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-      activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor)
-    ])
-
-    self.loadingView = activityIndicator
-  }
-
-  func hideLoadingView() {
-    loadingView?.removeFromSuperview()
-    loadingView = nil
-  }
 
   // Common button styling
-  func styleButton(_ button: UIButton, sfSymbolName: String, tintColor: UIColor = .white, size: CGFloat = 44) {
+  private func styleButton(_ button: UIButton, sfSymbolName: String, tintColor: UIColor = .white, size: CGFloat = 44) {
     let config = UIImage.SymbolConfiguration(pointSize: size / 2, weight: .bold)
     if let image = UIImage(systemName: sfSymbolName, withConfiguration: config) {
       button.setImage(image, for: .normal)
     }
   }
 
-
-  @objc private func playTapped() {
-    guard viewModel.tracks.indices.contains(viewModel.currentTrackIndex),
-          let url = viewModel.tracks[viewModel.currentTrackIndex].previewURL else {
-      return
+  // MARK: - Objc Helpers
+  @objc private func playPauseTapped() {
+    let index = viewModel.currentTrackIndex < 0 ? 0 : viewModel.currentTrackIndex
+    if viewModel.audioPlayer != nil {
+      // Stop existing playback
+      viewModel.stopMusic()
+    } else {
+      viewModel.startMusic(at: index)
     }
-
-    // Stop existing playback
-    stopMusic()
-
-    startMusic(with: url)
-  }
-
-  @objc private func stopTapped() {
-    stopMusic()
   }
 
   @objc private func nextTapped() {
-    viewModel.currentTrackIndex = min(viewModel.currentTrackIndex + 1, viewModel.tracks.count - 1)
-    playTapped()
-    tableView.reloadData()
+    viewModel.startMusic(at: min(viewModel.currentTrackIndex + 1, viewModel.tracks.count - 1))
   }
 
   @objc private func prevTapped() {
-    viewModel.currentTrackIndex = max(viewModel.currentTrackIndex - 1, 0)
-    playTapped()
-    tableView.reloadData()
-  }
-
-  func startMusic(with url: URL) {
-    viewModel.audioPlayer = AVPlayer(url: url)
-    viewModel.audioPlayer?.play()
-
-    // Preview duration (Spotify tracks are usually 30 seconds)
-    viewModel.trackDuration = 30.0
-    slider.maximumValue = Float(viewModel.trackDuration)
-    slider.value = 0.0
-
-    addPlaybackObserver()
-
-    // update play icon
-    tableView.reloadData()
-  }
-
-  func stopMusic() {
-    viewModel.audioPlayer?.pause()
-    viewModel.audioPlayer = nil
-
-    if let observer = viewModel.playbackObserver {
-      NotificationCenter.default.removeObserver(observer)
-      viewModel.playbackObserver = nil
-    }
+    viewModel.startMusic(at:  max(viewModel.currentTrackIndex - 1, 0))
   }
 
   @objc private func sliderChanged() {
@@ -217,19 +164,7 @@ final class HomeView: UIView {
     let time = CMTime(seconds: seconds, preferredTimescale: 600)
     player.seek(to: time)
   }
-
-  private func addPlaybackObserver() {
-    viewModel.playbackObserver = viewModel.audioPlayer?.addPeriodicTimeObserver(
-      forInterval: CMTime(seconds: 1, preferredTimescale: 600),
-      queue: .main
-    ) { [weak self] time in
-      guard let self = self else { return }
-      let currentTime = CMTimeGetSeconds(time)
-      self.slider.value = Float(currentTime)
-    }
-  }
 }
-
 
 // MARK: - Search View Delegate
 extension HomeView: UISearchBarDelegate {
@@ -240,19 +175,8 @@ extension HomeView: UISearchBarDelegate {
 
   private func performSearch(query: String) {
     showLoadingView()
-    BFRequest.shared.searchMusic(query: query) { [weak self] tracks in
-      DispatchQueue.main.async {
-        self?.hideLoadingView()
-        if tracks.isEmpty {
-          self?.delegate?.didErrorWith(message: "No results found for \"\(query)\".")
-        } else {
-          self?.viewModel.tracks = tracks
-          self?.tableView.reloadData()
-        }
-      }
-    }
+    viewModel.perfromSearch(query: query)
   }
-
 }
 
 // MARK: - Table View Delegate and Data source
@@ -283,28 +207,86 @@ extension HomeView: UITableViewDataSource, UITableViewDelegate {
 
     // Set the accessory view for the currently selected song
     if indexPath.row == viewModel.currentTrackIndex {
-      let playIcon = UIImageView(image: UIImage(systemName: "play.circle.fill"))
+      let imageName = viewModel.isMusicPlaying ? BFConstants.Button.pauseCircle : BFConstants.Button.playCircle
+
+      let playIcon = UIImageView(image: UIImage(systemName: imageName))
       playIcon.tintColor = .appBlue
       cell.accessoryView = playIcon
     } else {
       cell.accessoryType = .none
-      cell.accessoryView = nil // Reset accessoryView for non-selected cells
+      cell.accessoryView = nil
     }
 
     return cell
   }
+
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    viewModel.currentTrackIndex = indexPath.row
-    playTapped()
-    tableView.reloadData() // Refresh to update play icon
+    viewModel.startMusic(at: indexPath.row)
+    tableView.reloadData()
   }
 }
 
+// MARK: - Loading
+extension HomeView {
+  func showLoadingView() {
+    guard self.loadingView == nil else { return }
 
+    let activityIndicator = UIActivityIndicatorView(style: .large)
+    activityIndicator.color = .black
+    activityIndicator.startAnimating()
+    activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+    self.addSubview(activityIndicator)
+
+    NSLayoutConstraint.activate([
+      activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+      activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+    ])
+
+    self.loadingView = activityIndicator
+  }
+
+  func hideLoadingView() {
+    loadingView?.removeFromSuperview()
+    loadingView = nil
+  }
+}
+
+// MARK: - VM Delegate
 extension HomeView: HomeViewModelDelegate {
-  func didLoadInitialRecomendations() {
-    hideLoadingView()
+  func didStartPlaying(track: Track) {
+    // Preview duration (Spotify tracks are usually 30 seconds)
+    slider.maximumValue = Float(viewModel.trackDuration)
+    slider.value = 0.0
+
+    // set the icon to pause
+    styleButton(playPauseButton, sfSymbolName: BFConstants.Button.pause)
     tableView.reloadData()
+  }
+
+  func didStopPlaying() {
+    // set the icon to play
+    styleButton(playPauseButton, sfSymbolName: BFConstants.Button.play)
+    tableView.reloadData()
+  }
+
+  func didFinishPlayingTrack() {
+    // set the icon to pause
+    styleButton(playPauseButton, sfSymbolName: BFConstants.Button.play)
+    tableView.reloadData()
+  }
+
+  func updateSliderValue(with newValue: Float) {
+    slider.value = newValue
+  }
+
+  func didErrorWith(message: String) {
+    hideLoadingView()
+    delegate?.didErrorWith(message: message)
+  }
+
+  func didFinishFetchingData() {
+    tableView.reloadData()
+    hideLoadingView()
   }
 
   func shouldShowError(message: String) {

@@ -9,9 +9,9 @@ import Foundation
 
 final class BFService {
   static let shared = BFService()
-
+  
   private init() {}
-
+  
   func request<T: Decodable>(
     _ endpoint: BFEndpoint,
     expecting: T.Type,
@@ -21,28 +21,27 @@ final class BFService {
       completion(.failure(NetworkError.invalidURL))
       return
     }
-
+    
     var request = URLRequest(url: url)
     request.httpMethod = endpoint.method.rawValue
     request.allHTTPHeaderFields = endpoint.headers
     if let body = endpoint.body {
       request.httpBody = body
     }
-
+    
     URLSession.shared.dataTask(with: request) { data, response, error in
       if let error = error {
         completion(.failure(error))
         return
       }
-
+      
       guard let data = data else {
         completion(.failure(NetworkError.noData))
         return
       }
-
+      
       do {
         let decodedObject = try JSONDecoder().decode(T.self, from: data)
-        print("%% - Success decode data \(decodedObject)")
         completion(.success(decodedObject))
       } catch {
         completion(.failure(error))

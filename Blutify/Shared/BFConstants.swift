@@ -19,3 +19,14 @@ extension BFConstants {
     static let clientSecret = "CLIENT_SECRET"
   }
 }
+
+extension BFConstants {
+  enum Button {
+    static let play = "play"
+    static let playCircle = "play.circle"
+    static let pause = "pause"
+    static let pauseCircle = "pause.circle"
+    static let prev = "backward.frame"
+    static let next = "forward.frame"
+  }
+}

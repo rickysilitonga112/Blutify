@@ -73,8 +73,8 @@
 		5622D1B02CE8B4970086442F /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		5622D1B22CE8B4AC0086442F /* BFRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFRequest.swift; sourceTree = "<group>"; };
 		5622D1B42CE8B8280086442F /* UIColor+Extension.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
-		5622D1B92CE9660C0086442F /* HomeView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; tabWidth = 2; };
-		5622D1BB2CE966470086442F /* HomeViewModel.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; tabWidth = 4; };
+		5622D1B92CE9660C0086442F /* HomeView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; tabWidth = 2; wrapsLines = 1; };
+		5622D1BB2CE966470086442F /* HomeViewModel.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; tabWidth = 2; };
 		5622D1BE2CE9841E0086442F /* BFService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFService.swift; sourceTree = "<group>"; };
 		5622D1C02CE9845D0086442F /* BFEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFEndpoint.swift; sourceTree = "<group>"; };
 		5622D1C32CE98B660086442F /* TokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResponse.swift; sourceTree = "<group>"; };
