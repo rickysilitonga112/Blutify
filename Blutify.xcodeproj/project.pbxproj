@@ -11,10 +11,7 @@
 		5622D17E2CE846BD0086442F /* AppPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5622D17D2CE846BD0086442F /* AppPreference.swift */; };
 		5622D18D2CE896C00086442F /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5622D18C2CE896C00086442F /* TabBarViewController.swift */; };
 		5622D18F2CE896EE0086442F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5622D18E2CE896EE0086442F /* SearchViewController.swift */; };
-		5622D1922CE897350086442F /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5622D1912CE897350086442F /* AuthViewController.swift */; };
-		5622D1942CE897610086442F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5622D1932CE897610086442F /* LoginViewController.swift */; };
-		5622D1962CE897B00086442F /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5622D1952CE897B00086442F /* SearchResultViewController.swift */; };
-		5622D1992CE897FE0086442F /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5622D1982CE897FE0086442F /* AuthManager.swift */; };
+		5622D1942CE897610086442F /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5622D1932CE897610086442F /* WelcomeViewController.swift */; };
 		5622D19B2CE898070086442F /* HapticFeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5622D19A2CE898070086442F /* HapticFeedbackManager.swift */; };
 		5622D19F2CE8A19D0086442F /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5622D19E2CE8A19D0086442F /* UIView+Extension.swift */; };
 		5622D1B12CE8B4970086442F /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5622D1B02CE8B4970086442F /* Track.swift */; };
@@ -64,10 +61,7 @@
 		5622D1812CE88A8C0086442F /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		5622D18C2CE896C00086442F /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		5622D18E2CE896EE0086442F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		5622D1912CE897350086442F /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
-		5622D1932CE897610086442F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		5622D1952CE897B00086442F /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchResultViewController.swift; path = Blutify/Controllers/Other/SearchResultViewController.swift; sourceTree = SOURCE_ROOT; };
-		5622D1982CE897FE0086442F /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		5622D1932CE897610086442F /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		5622D19A2CE898070086442F /* HapticFeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedbackManager.swift; sourceTree = "<group>"; };
 		5622D19E2CE8A19D0086442F /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		5622D1B02CE8B4970086442F /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
@@ -178,9 +172,7 @@
 		5622D1902CE8972B0086442F /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				5622D1912CE897350086442F /* AuthViewController.swift */,
-				5622D1932CE897610086442F /* LoginViewController.swift */,
-				5622D1952CE897B00086442F /* SearchResultViewController.swift */,
+				5622D1932CE897610086442F /* WelcomeViewController.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -188,7 +180,6 @@
 		5622D1972CE897D50086442F /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				5622D1982CE897FE0086442F /* AuthManager.swift */,
 				5622D19A2CE898070086442F /* HapticFeedbackManager.swift */,
 			);
 			path = Managers;
@@ -454,16 +445,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5622D1942CE897610086442F /* LoginViewController.swift in Sources */,
+				5622D1942CE897610086442F /* WelcomeViewController.swift in Sources */,
 				5622D1BC2CE966470086442F /* HomeViewModel.swift in Sources */,
 				5622D1D52CE9C9470086442F /* AppCoordinator.swift in Sources */,
 				5622D1B32CE8B4AC0086442F /* BFRequest.swift in Sources */,
-				5622D1992CE897FE0086442F /* AuthManager.swift in Sources */,
 				5622D1B52CE8B8280086442F /* UIColor+Extension.swift in Sources */,
 				5622D19F2CE8A19D0086442F /* UIView+Extension.swift in Sources */,
 				5622D1C62CE98B800086442F /* SearchResponse.swift in Sources */,
 				5622D1BA2CE9660C0086442F /* HomeView.swift in Sources */,
-				5622D1922CE897350086442F /* AuthViewController.swift in Sources */,
 				5622D1C82CE98BA60086442F /* RecomendationResponse.swift in Sources */,
 				5622D1C12CE9845D0086442F /* BFEndpoint.swift in Sources */,
 				5622D19B2CE898070086442F /* HapticFeedbackManager.swift in Sources */,
@@ -475,7 +464,6 @@
 				5622D17E2CE846BD0086442F /* AppPreference.swift in Sources */,
 				56D357652CE78DAE00BB2149 /* AppDelegate.swift in Sources */,
 				5622D1C42CE98B660086442F /* TokenResponse.swift in Sources */,
-				5622D1962CE897B00086442F /* SearchResultViewController.swift in Sources */,
 				56D357672CE78DAE00BB2149 /* SceneDelegate.swift in Sources */,
 				5622D1B12CE8B4970086442F /* Track.swift in Sources */,
 				5622D1BF2CE9841E0086442F /* BFService.swift in Sources */,
