@@ -12,6 +12,7 @@ import UIKit
 protocol HomeViewModelDelegate: AnyObject {
     func didLoadInitialRecomendations()
     func shouldShowError(message: String)
+    func shouldShowLoading()
 }
 
 final class HomeViewModel: NSObject {
@@ -27,11 +28,7 @@ final class HomeViewModel: NSObject {
 
     // MARK: - Helpers
     func loadRecommendations() {
-        DispatchQueue.main.async { [weak self] in
-//            self?.showLoadingView()
-            // should show loading here
-        }
-
+        delegate?.shouldShowLoading()
         BFRequest.shared.fetchRecommendations { [weak self] tracks in
             DispatchQueue.main.async {
                 if tracks.isEmpty {

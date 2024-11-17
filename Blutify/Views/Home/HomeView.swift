@@ -19,7 +19,6 @@ final class HomeView: UIView {
 
   public weak var delegate: HomeViewDelegate?
 
-
   /// Search bar
   private let searchBar: UISearchBar = {
     let searchBar = UISearchBar()
@@ -69,7 +68,7 @@ final class HomeView: UIView {
   // MARK: - Helpers
   private func setupViews() {
     translatesAutoresizingMaskIntoConstraints = false
-    
+
     searchBar.delegate = self
     tableView.delegate = self
     tableView.dataSource = self
@@ -129,25 +128,20 @@ final class HomeView: UIView {
   }
 
   func showLoadingView() {
-    guard loadingView == nil else { return } // Prevent multiple overlays
-
-    let overlay = UIView(frame: bounds)
-    overlay.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+    guard self.loadingView == nil else { return }
 
     let activityIndicator = UIActivityIndicatorView(style: .large)
-    activityIndicator.color = .white
+    activityIndicator.color = .black
     activityIndicator.startAnimating()
-
-    overlay.addSubview(activityIndicator)
     activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+    self.addSubview(activityIndicator)
 
     NSLayoutConstraint.activate([
-      activityIndicator.centerXAnchor.constraint(equalTo: overlay.centerXAnchor),
-      activityIndicator.centerYAnchor.constraint(equalTo: overlay.centerYAnchor)
+      activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+      activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor)
     ])
 
-    addSubview(overlay)
-    loadingView = overlay
+    self.loadingView = activityIndicator
   }
 
   func hideLoadingView() {
@@ -157,10 +151,10 @@ final class HomeView: UIView {
 
   // Common button styling
   func styleButton(_ button: UIButton, sfSymbolName: String, tintColor: UIColor = .white, size: CGFloat = 44) {
-      let config = UIImage.SymbolConfiguration(pointSize: size / 2, weight: .bold)
-      if let image = UIImage(systemName: sfSymbolName, withConfiguration: config) {
-          button.setImage(image, for: .normal)
-      }
+    let config = UIImage.SymbolConfiguration(pointSize: size / 2, weight: .bold)
+    if let image = UIImage(systemName: sfSymbolName, withConfiguration: config) {
+      button.setImage(image, for: .normal)
+    }
   }
 
 
@@ -177,7 +171,7 @@ final class HomeView: UIView {
   }
 
   @objc private func stopTapped() {
-      stopMusic()
+    stopMusic()
   }
 
   @objc private func nextTapped() {
@@ -245,12 +239,12 @@ extension HomeView: UISearchBarDelegate {
   }
 
   private func performSearch(query: String) {
-//    showLoadingView()
+    showLoadingView()
     BFRequest.shared.searchMusic(query: query) { [weak self] tracks in
       DispatchQueue.main.async {
-//        self?.hideLoadingView()
+        self?.hideLoadingView()
         if tracks.isEmpty {
-//          self?.showAPIError(message: "No results found for \"\(query)\".")
+          self?.delegate?.didErrorWith(message: "No results found for \"\(query)\".")
         } else {
           self?.viewModel.tracks = tracks
           self?.tableView.reloadData()
@@ -309,12 +303,15 @@ extension HomeView: UITableViewDataSource, UITableViewDelegate {
 
 extension HomeView: HomeViewModelDelegate {
   func didLoadInitialRecomendations() {
-    print("%% - Reloading table view")
+    hideLoadingView()
     tableView.reloadData()
   }
-  
+
   func shouldShowError(message: String) {
-    // show error
-    print("%% - Show error with message \(message)")
+    delegate?.didErrorWith(message: message)
+  }
+
+  func shouldShowLoading() {
+    showLoadingView()
   }
 }
