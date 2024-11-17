@@ -141,6 +141,9 @@ final class HomeView: UIView {
 
   // MARK: - Objc Helpers
   @objc private func playPauseTapped() {
+    // configure haptic
+    HapticFeedbackManager.shared.vibrateForSelection()
+
     let index = viewModel.currentTrackIndex < 0 ? 0 : viewModel.currentTrackIndex
     if viewModel.audioPlayer != nil {
       // Stop existing playback
@@ -151,10 +154,16 @@ final class HomeView: UIView {
   }
 
   @objc private func nextTapped() {
+    // configure haptic
+    HapticFeedbackManager.shared.vibrateForSelection()
+
     viewModel.startMusic(at: min(viewModel.currentTrackIndex + 1, viewModel.tracks.count - 1))
   }
 
   @objc private func prevTapped() {
+    // configure haptic
+    HapticFeedbackManager.shared.vibrateForSelection()
+    
     viewModel.startMusic(at:  max(viewModel.currentTrackIndex - 1, 0))
   }
 
@@ -227,6 +236,9 @@ extension HomeView: UITableViewDataSource, UITableViewDelegate {
   }
 
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    // configure haptic
+    HapticFeedbackManager.shared.vibrateForSelection()
+    
     viewModel.startMusic(at: indexPath.row)
     tableView.reloadData()
   }
