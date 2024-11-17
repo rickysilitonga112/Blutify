@@ -29,6 +29,7 @@
 		5622D1C62CE98B800086442F /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5622D1C52CE98B800086442F /* SearchResponse.swift */; };
 		5622D1C82CE98BA60086442F /* RecomendationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5622D1C72CE98BA60086442F /* RecomendationResponse.swift */; };
 		5622D1CB2CE99A640086442F /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5622D1CA2CE99A640086442F /* SongTableViewCell.swift */; };
+		5622D1D12CE9AA420086442F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5622D1D02CE9AA420086442F /* Kingfisher */; };
 		56D357652CE78DAE00BB2149 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D357642CE78DAE00BB2149 /* AppDelegate.swift */; };
 		56D357672CE78DAE00BB2149 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D357662CE78DAE00BB2149 /* SceneDelegate.swift */; };
 		56D357692CE78DAE00BB2149 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D357682CE78DAE00BB2149 /* HomeViewController.swift */; };
@@ -98,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5622D1D12CE9AA420086442F /* Kingfisher in Frameworks */,
 				5622D1B82CE8E4640086442F /* DebugSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -329,6 +331,7 @@
 			name = Blutify;
 			packageProductDependencies = (
 				5622D1B72CE8E4640086442F /* DebugSwift */,
+				5622D1D02CE9AA420086442F /* Kingfisher */,
 			);
 			productName = Blutify;
 			productReference = 56D357612CE78DAE00BB2149 /* Blutify.app */;
@@ -404,6 +407,7 @@
 			mainGroup = 56D357582CE78DAE00BB2149;
 			packageReferences = (
 				5622D1B62CE8E4640086442F /* XCRemoteSwiftPackageReference "DebugSwift" */,
+				5622D1CF2CE9AA420086442F /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 56D357622CE78DAE00BB2149 /* Products */;
 			projectDirPath = "";
@@ -821,6 +825,14 @@
 				minimumVersion = 0.3.6;
 			};
 		};
+		5622D1CF2CE9AA420086442F /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -828,6 +840,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5622D1B62CE8E4640086442F /* XCRemoteSwiftPackageReference "DebugSwift" */;
 			productName = DebugSwift;
+		};
+		5622D1D02CE9AA420086442F /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5622D1CF2CE9AA420086442F /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -8,19 +8,32 @@
 import Foundation
 
 struct Track: Codable {
-    let id: String
-    let name: String
-    let artists: [Artist]
-    let previewURL: URL?
+  let id: String?
+  let name: String?
+  let artists: [Artist]?
+  let album: Album?
+  let previewURL: URL?
 
-    struct Artist: Codable {
-        let name: String
-    }
+  struct Artist: Codable {
+    let name: String?
+  }
 
-    enum CodingKeys: String, CodingKey {
-        case id
-        case name
-        case artists
-        case previewURL = "preview_url"
-    }
+  struct Image: Codable {
+    let url: String?
+    let width: Int?
+    let height: Int?
+  }
+
+  struct Album: Codable {
+    let name: String?
+    let images: [Image]?
+  }
+
+  enum CodingKeys: String, CodingKey {
+    case id
+    case name
+    case artists
+    case album
+    case previewURL = "preview_url"
+  }
 }

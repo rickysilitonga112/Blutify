@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class SongTableViewCell: UITableViewCell {
   static let cellIdentifier = "SongTableViewCell"
@@ -89,10 +90,13 @@ class SongTableViewCell: UITableViewCell {
   }
 
   // Public method to configure the cell
-  func configure(song: String, artist: String, album: String, image: UIImage?) {
+  func configure(song: String, artist: String, album: String, imageURL: URL?) {
     songLabel.text = song
     artistLabel.text = artist
     albumLabel.text = album
-    albumImageView.image = image
+
+    if let url = imageURL {
+      albumImageView.kf.setImage(with: url)
+    }
   }
 }

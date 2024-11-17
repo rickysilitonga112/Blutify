@@ -282,12 +282,14 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
 
     let track = tracks[indexPath.row]
 
+    let imageUrl = URL(string: track.album?.images?.last?.url ?? "")
+
     // Configure the cell's content
     cell.configure(
-      song: track.name,
-      artist: track.artists.first?.name ?? "",
-      album: "Album Placeholder",
-      image: UIImage(systemName: "person.2") // Replace with actual image logic if needed
+      song: track.name ?? "",
+      artist: track.artists?.first?.name ?? "",
+      album: track.album?.name ?? "",
+      imageURL: imageUrl
     )
 
     // Set the accessory view for the currently selected song
@@ -299,7 +301,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
       cell.accessoryType = .none
       cell.accessoryView = nil // Reset accessoryView for non-selected cells
     }
-    
+
     return cell
   }
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
