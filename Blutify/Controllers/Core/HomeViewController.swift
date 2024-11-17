@@ -9,7 +9,6 @@ import UIKit
 import AVFoundation
 
 class HomeViewController: UIViewController {
-  private let spotifyAPI = SpotifyAPI()
   private var tracks: [Track] = []
   private var audioPlayer: AVPlayer?
   private var currentTrackIndex = 0
@@ -42,7 +41,7 @@ class HomeViewController: UIViewController {
     setupViews()
     setupConstraints()
 
-    spotifyAPI.authenticate { success in
+    BFRequest.shared.authenticate { success in
       if success {
         print("Authenticated successfully!")
         self.loadRecommendations()
@@ -121,7 +120,7 @@ class HomeViewController: UIViewController {
       self?.showLoadingView()
     }
 
-    spotifyAPI.fetchRecommendations { [weak self] tracks in
+    BFRequest.shared.fetchRecommendations { [weak self] tracks in
       DispatchQueue.main.async {
         self?.hideLoadingView()
         if tracks.isEmpty {
@@ -247,7 +246,7 @@ extension HomeViewController: UISearchBarDelegate {
 
   private func performSearch(query: String) {
     showLoadingView()
-    spotifyAPI.searchMusic(query: query) { [weak self] tracks in
+    BFRequest.shared.searchMusic(query: query) { [weak self] tracks in
       DispatchQueue.main.async {
         self?.hideLoadingView()
         if tracks.isEmpty {

@@ -7,12 +7,15 @@
 
 import Foundation
 
-public enum BFConstants {}
+enum BFConstants {
 
-public extension BFConstants {
+}
+
+extension BFConstants {
   enum InfoPlistKey {
-    public static let baseUrl = "BASE_URL"
-    public static let clientId = "CLIENT_ID"
-    public static let clientSecret = "CLIENT_SECRET"
+    static let baseUrl = "BASE_URL"
+    static let baseAuthUrl = "BASE_AUTH_URL"
+    static let clientId = "CLIENT_ID"
+    static let clientSecret = "CLIENT_SECRET"
   }
 }

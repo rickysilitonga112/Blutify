@@ -11,10 +11,18 @@ public final class AppPreference: ObservableObject {
   static let shared = AppPreference()
 
   public var baseUrl: String {
-    if let basePath = Bundle.main.infoDictionary?[BFConstants.InfoPlistKey.baseUrl] as? String {
-      return basePath
+    if let baseUrl = Bundle.main.infoDictionary?[BFConstants.InfoPlistKey.baseUrl] as? String {
+      return baseUrl
     } else {
       return "empty_base_url"
+    }
+  }
+
+  public var baseAuthUrl: String {
+    if let baseAuthUrl = Bundle.main.infoDictionary?[BFConstants.InfoPlistKey.baseAuthUrl] as? String {
+      return baseAuthUrl
+    } else {
+      return "empty_base_auth_url"
     }
   }
 
