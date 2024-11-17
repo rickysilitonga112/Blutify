@@ -42,6 +42,7 @@ final class BFService {
 
       do {
         let decodedObject = try JSONDecoder().decode(T.self, from: data)
+        print("%% - Success decode data \(decodedObject)")
         completion(.success(decodedObject))
       } catch {
         completion(.failure(error))

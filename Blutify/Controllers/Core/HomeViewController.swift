@@ -126,7 +126,8 @@ class HomeViewController: UIViewController {
         if tracks.isEmpty {
           self?.showAPIError(message: "No recommendations found.")
         } else {
-          self?.tracks = tracks
+          let playableTracks = tracks.filter { $0.previewURL != nil }
+          self?.tracks = playableTracks
           self?.tableView.reloadData()
         }
       }
