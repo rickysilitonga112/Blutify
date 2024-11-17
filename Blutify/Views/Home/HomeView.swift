@@ -49,7 +49,14 @@ final class HomeView: UIView {
   }()
 
   private var loadingView: UIView?
-  private let timerLabel = UILabel()
+
+  private let timerLabel: UILabel = {
+    let label = UILabel()
+    label.translatesAutoresizingMaskIntoConstraints = false
+    label.text = "00:00 / 00:00"
+
+    return label
+  }()
 
   // MARK: - Action button
   private let playPauseButton = UIButton(type: .system)
@@ -110,7 +117,6 @@ final class HomeView: UIView {
     nextButton.translatesAutoresizingMaskIntoConstraints = false
     prevButton.translatesAutoresizingMaskIntoConstraints = false
     slider.translatesAutoresizingMaskIntoConstraints = false
-    timerLabel.translatesAutoresizingMaskIntoConstraints = false
 
     NSLayoutConstraint.activate([
       searchBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),

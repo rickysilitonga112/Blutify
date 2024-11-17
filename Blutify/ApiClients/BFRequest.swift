@@ -77,13 +77,11 @@ final class BFRequest {
       return
     }
 
-    let seedArtists = "4NHQUGzhtTLFvgF5SZesLK"
     let seedGenres = "pop"
-    let seedTracks = "0c6xIDDpzE81m2q797ordA"
-
+    
     let endpoint = BFEndpoint(
       baseURL: baseUrl,
-      path: "/recommendations?seed_artists=\(seedArtists)&seed_genres=\(seedGenres)&seed_tracks=\(seedTracks)",
+      path: "/recommendations?seed_genres=\(seedGenres)",
       method: .GET,
       headers: [
         "Authorization": "Bearer \(token)"
