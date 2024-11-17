@@ -14,8 +14,8 @@ protocol HomeViewModelDelegate: AnyObject {
   func didErrorWith(message: String)
   func shouldShowError(message: String)
   func shouldShowLoading()
-  func updateSliderValue(with newValue: Float)
-  
+  func updateTimer(time: CMTime)
+
   // player
   func didStartPlaying(track: Track)
   func didStopPlaying()
@@ -121,8 +121,7 @@ final class HomeViewModel: NSObject {
       queue: .main
     ) { [weak self] time in
       guard let self = self else { return }
-      let currentTime = CMTimeGetSeconds(time)
-      delegate?.updateSliderValue(with: Float(currentTime))
+      delegate?.updateTimer(time: time)
     }
   }
 }

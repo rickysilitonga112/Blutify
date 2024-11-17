@@ -48,13 +48,14 @@ final class HomeView: UIView {
     return stackView
   }()
 
+  private var loadingView: UIView?
+  private let timerLabel = UILabel()
+
   // MARK: - Action button
   private let playPauseButton = UIButton(type: .system)
   private let nextButton = UIButton(type: .system)
   private let prevButton = UIButton(type: .system)
   private let slider = UISlider()
-
-  private var loadingView: UIView?
 
   // MARK: - Init
   override init(frame: CGRect) {
@@ -101,7 +102,7 @@ final class HomeView: UIView {
     prevButton.addTarget(self, action: #selector(prevTapped), for: .touchUpInside)
     slider.addTarget(self, action: #selector(sliderChanged), for: .valueChanged)
 
-    addSubviews(searchBar, tableView, buttonStackView, slider)
+    addSubviews(searchBar, tableView, buttonStackView, slider, timerLabel)
   }
 
   private func setupConstraints() {
@@ -109,6 +110,7 @@ final class HomeView: UIView {
     nextButton.translatesAutoresizingMaskIntoConstraints = false
     prevButton.translatesAutoresizingMaskIntoConstraints = false
     slider.translatesAutoresizingMaskIntoConstraints = false
+    timerLabel.translatesAutoresizingMaskIntoConstraints = false
 
     NSLayoutConstraint.activate([
       searchBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
@@ -126,7 +128,10 @@ final class HomeView: UIView {
 
       slider.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
       slider.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-      slider.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -20)
+      slider.bottomAnchor.constraint(equalTo: timerLabel.topAnchor, constant: -20),
+
+      timerLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+      timerLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -20)
     ])
   }
 
@@ -137,6 +142,12 @@ final class HomeView: UIView {
     if let image = UIImage(systemName: sfSymbolName, withConfiguration: config) {
       button.setImage(image, for: .normal)
     }
+  }
+
+  private func formatTime(seconds: Double) -> String {
+    let minutes = Int(seconds) / 60
+    let secondsRemaining = Int(seconds) % 60
+    return String(format: "%02d:%02d", minutes, secondsRemaining)
   }
 
   // MARK: - Objc Helpers
@@ -293,8 +304,14 @@ extension HomeView: HomeViewModelDelegate {
     tableView.reloadData()
   }
 
-  func updateSliderValue(with newValue: Float) {
-    slider.value = newValue
+  func updateTimer(time: CMTime) {
+    let currentTime = CMTimeGetSeconds(time)
+    slider.value = Float(currentTime)
+
+    // update the label also
+    let currentFormatted = formatTime(seconds: currentTime)
+    let totalFormatted = formatTime(seconds: viewModel.trackDuration)
+    timerLabel.text = "\(currentFormatted) / \(totalFormatted)"
   }
 
   func didErrorWith(message: String) {
