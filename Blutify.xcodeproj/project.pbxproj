@@ -30,6 +30,7 @@
 		5622D1C82CE98BA60086442F /* RecomendationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5622D1C72CE98BA60086442F /* RecomendationResponse.swift */; };
 		5622D1CB2CE99A640086442F /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5622D1CA2CE99A640086442F /* SongTableViewCell.swift */; };
 		5622D1D12CE9AA420086442F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5622D1D02CE9AA420086442F /* Kingfisher */; };
+		5622D1D52CE9C9470086442F /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5622D1D42CE9C9470086442F /* AppCoordinator.swift */; };
 		56D357652CE78DAE00BB2149 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D357642CE78DAE00BB2149 /* AppDelegate.swift */; };
 		56D357672CE78DAE00BB2149 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D357662CE78DAE00BB2149 /* SceneDelegate.swift */; };
 		56D357692CE78DAE00BB2149 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D357682CE78DAE00BB2149 /* HomeViewController.swift */; };
@@ -72,7 +73,7 @@
 		5622D1B02CE8B4970086442F /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		5622D1B22CE8B4AC0086442F /* BFRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFRequest.swift; sourceTree = "<group>"; };
 		5622D1B42CE8B8280086442F /* UIColor+Extension.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
-		5622D1B92CE9660C0086442F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		5622D1B92CE9660C0086442F /* HomeView.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; tabWidth = 2; };
 		5622D1BB2CE966470086442F /* HomeViewModel.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; tabWidth = 4; };
 		5622D1BE2CE9841E0086442F /* BFService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFService.swift; sourceTree = "<group>"; };
 		5622D1C02CE9845D0086442F /* BFEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFEndpoint.swift; sourceTree = "<group>"; };
@@ -80,6 +81,7 @@
 		5622D1C52CE98B800086442F /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
 		5622D1C72CE98BA60086442F /* RecomendationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecomendationResponse.swift; sourceTree = "<group>"; };
 		5622D1CA2CE99A640086442F /* SongTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongTableViewCell.swift; sourceTree = "<group>"; };
+		5622D1D42CE9C9470086442F /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		56D357612CE78DAE00BB2149 /* Blutify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blutify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56D357642CE78DAE00BB2149 /* AppDelegate.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		56D357662CE78DAE00BB2149 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 			children = (
 				56D357642CE78DAE00BB2149 /* AppDelegate.swift */,
 				56D357662CE78DAE00BB2149 /* SceneDelegate.swift */,
+				5622D1D42CE9C9470086442F /* AppCoordinator.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -453,6 +456,7 @@
 			files = (
 				5622D1942CE897610086442F /* LoginViewController.swift in Sources */,
 				5622D1BC2CE966470086442F /* HomeViewModel.swift in Sources */,
+				5622D1D52CE9C9470086442F /* AppCoordinator.swift in Sources */,
 				5622D1B32CE8B4AC0086442F /* BFRequest.swift in Sources */,
 				5622D1992CE897FE0086442F /* AuthManager.swift in Sources */,
 				5622D1B52CE8B8280086442F /* UIColor+Extension.swift in Sources */,
