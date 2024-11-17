@@ -24,7 +24,11 @@ class HomeViewController: UIViewController {
 
   private let tableView: UITableView = {
     let tableView = UITableView()
-    tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+    tableView.translatesAutoresizingMaskIntoConstraints = false
+    tableView.register(
+      SongTableViewCell.self,
+      forCellReuseIdentifier: SongTableViewCell.cellIdentifier
+    )
     return tableView
   }()
 
@@ -143,7 +147,6 @@ class HomeViewController: UIViewController {
 
   private func setupConstraints() {
     searchBar.translatesAutoresizingMaskIntoConstraints = false
-    tableView.translatesAutoresizingMaskIntoConstraints = false
     playButton.translatesAutoresizingMaskIntoConstraints = false
     stopButton.translatesAutoresizingMaskIntoConstraints = false
     nextButton.translatesAutoresizingMaskIntoConstraints = false
@@ -180,7 +183,9 @@ class HomeViewController: UIViewController {
 
   @objc private func playTapped() {
     guard tracks.indices.contains(currentTrackIndex),
-          let url = tracks[currentTrackIndex].previewURL else { return }
+          let url = tracks[currentTrackIndex].previewURL else {
+      return
+    }
 
     // Stop existing playback
     stopTapped()
@@ -268,22 +273,35 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-    let track = tracks[indexPath.row]
-    cell.textLabel?.text = "\(track.name) - \(track.artist)"
-
-    // Add play icon if this is the currently playing song
-    if indexPath.row == currentTrackIndex {
-      let playIcon = UIImageView(image: UIImage(systemName: "play.circle.fill"))
-      playIcon.tintColor = .systemBlue
-      cell.accessoryView = playIcon
-    } else {
-      cell.accessoryView = nil
+    guard let cell = tableView.dequeueReusableCell(
+      withIdentifier: SongTableViewCell.cellIdentifier,
+      for: indexPath
+    ) as? SongTableViewCell else {
+      fatalError("Failed to dequeue SongTableViewCell")
     }
 
+    let track = tracks[indexPath.row]
+
+    // Configure the cell's content
+    cell.configure(
+      song: track.name,
+      artist: track.artists.first?.name ?? "",
+      album: "Album Placeholder",
+      image: UIImage(systemName: "person.2") // Replace with actual image logic if needed
+    )
+
+    // Set the accessory view for the currently selected song
+    if indexPath.row == currentTrackIndex {
+      let playIcon = UIImageView(image: UIImage(systemName: "play.circle.fill"))
+      playIcon.tintColor = .appBlue
+      cell.accessoryView = playIcon
+    } else {
+      cell.accessoryType = .none
+      cell.accessoryView = nil // Reset accessoryView for non-selected cells
+    }
+    
     return cell
   }
-
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     currentTrackIndex = indexPath.row
     playTapped()
