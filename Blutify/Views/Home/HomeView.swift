@@ -196,6 +196,10 @@ final class HomeView: UIView {
 extension HomeView: UISearchBarDelegate {
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
     guard let query = searchBar.text else { return }
+    
+    // Dismiss the keyboard
+    searchBar.resignFirstResponder()
+
     performSearch(query: query)
   }
 
